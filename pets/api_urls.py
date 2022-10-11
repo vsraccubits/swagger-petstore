@@ -8,8 +8,8 @@ router.register(r"", viewsets.PetModelViewSet)
 router.register(r"formdata", viewsets.PetViewSet, basename="formdata")
 
 urlpatterns = [
-    path("findByStatus/", views.PetByStatusAPIView.as_view()),
-    path("findByTags/", views.pet_by_tags),
+    path("find/findByStatus/", views.PetByStatusAPIView.as_view()),
+    path("find/findByTags/", views.pet_by_tags),
 ]
 
 urlpatterns += router.urls

@@ -2,6 +2,7 @@ from django.contrib.auth import authenticate, get_user_model, login, logout
 from django.core.exceptions import ObjectDoesNotExist
 from rest_framework import generics, status
 from rest_framework.authtoken.models import Token
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
@@ -29,6 +30,7 @@ class UserRetriveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = serializers.UserSerializer
     lookup_field = "username"
     lookup_url_kwarg = "userName"
+    permission_classes = [IsAuthenticated]
 
 
 class UserLoginAPIView(APIView):
@@ -61,6 +63,8 @@ class UserLogoutAPIView(APIView):
     """
     View logout current loggedin user.
     """
+
+    permission_classes = [IsAuthenticated]
 
     def post(self, request):
         if request.user.is_authenticated:

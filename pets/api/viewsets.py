@@ -4,7 +4,7 @@ from django.conf import settings
 from django.shortcuts import get_object_or_404
 from rest_framework import status, viewsets
 from rest_framework.decorators import action
-from rest_framework.parsers import FormParser, MultiPartParser
+from rest_framework.parsers import FormParser, JSONParser, MultiPartParser
 from rest_framework.response import Response
 
 from pets import models
@@ -20,7 +20,7 @@ class PetModelViewSet(viewsets.ModelViewSet):
     queryset = models.Pet.objects.all()
     serializer_class = serializers.PetSerializer
     lookup_url_kwarg = "petId"
-    parser_classes = [MultiPartParser]
+    parser_classes = [JSONParser, MultiPartParser]
 
     def perform_destroy(self, instance):
         category = instance.category
