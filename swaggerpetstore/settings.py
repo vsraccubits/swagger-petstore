@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     "stores",
     "users",
     "rest_framework",
+    "rest_framework.authtoken",
 ]
 
 MIDDLEWARE = [
@@ -139,3 +140,13 @@ AUTH_USER_MODEL = "users.User"
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 # MEDIA_URL = "media/"
+
+# Setting authentication scheme
+# https://www.django-rest-framework.org/api-guide/authentication/#how-authentication-is-determined
+REST_FRAMEWORK = {
+    "DEFAULT_AUTHENTICATION_CLASSES": [
+        "rest_framework.authentication.BasicAuthentication",
+        "rest_framework.authentication.SessionAuthentication",
+        "rest_framework.authentication.TokenAuthentication",
+    ]
+}

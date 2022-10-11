@@ -7,6 +7,10 @@ from stores.api import serializers
 
 
 class InventoryAPIView(APIView):
+    """
+    View return pet count by status.
+    """
+
     def get(self, request):
         available = models.Pet.objects.filter(status="available").count()
         pending = models.Pet.objects.filter(status="pending").count()
@@ -16,6 +20,10 @@ class InventoryAPIView(APIView):
 
 
 class OrderCreateMixin(mixins.CreateModelMixin, generics.GenericAPIView):
+    """
+    Mixin to create an order.
+    """
+
     queryset = models.Order.objects.all()
     serializer_class = serializers.OrderSerializer
 
@@ -24,6 +32,10 @@ class OrderCreateMixin(mixins.CreateModelMixin, generics.GenericAPIView):
 
 
 class OrderRetrieveDestroyAPIView(generics.RetrieveDestroyAPIView):
+    """
+    GenericAPIView Retrive, Delete an order by orderId.
+    """
+
     queryset = models.Order.objects.all()
     serializer_class = serializers.OrderSerializer
     lookup_url_kwarg = "orderId"

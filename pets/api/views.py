@@ -13,7 +13,7 @@ def pet_by_tags(request):
     """
     View return list of Pets, by filtering against tags query parameter in the URL.
     This api accept multiple tags as query parameneter.
-        eg: http://localhost:8000/api/v1/pet/findByTags?tags=tag1&tags=tag2
+        eg: http://base_url/api/v1/pet/findByTags?tags=tag1&tags=tag2
     """
 
     if request.method == "GET":

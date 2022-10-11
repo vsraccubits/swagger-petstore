@@ -4,24 +4,40 @@ from pets import models
 
 
 class CategorySerializer(serializers.ModelSerializer):
+    """
+    Serializer for Category model.
+    """
+
     class Meta:
         model = models.Category
         fields = "__all__"
 
 
 class TagSerializer(serializers.ModelSerializer):
+    """
+    Serializer for Tag model.
+    """
+
     class Meta:
         model = models.Tag
         fields = "__all__"
 
 
 class PhotoUrlsSerializer(serializers.ModelSerializer):
+    """
+    Serializer for PhotoUrl model.
+    """
+
     class Meta:
         model = models.PhotoUrl
         fields = "__all__"
 
 
 class PetSerializer(serializers.ModelSerializer):
+    """
+    Serializer for Pet model.
+    """
+
     category = CategorySerializer()
     photo_urls = PhotoUrlsSerializer(many=True, read_only=True)
     tags = TagSerializer(many=True)

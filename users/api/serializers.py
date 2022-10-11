@@ -5,7 +5,24 @@ from rest_framework import serializers
 User = get_user_model()
 
 
+class UserListSerializer(serializers.ListSerializer):
+    """
+    List serializer to serialize list of user objects.
+    """
+
+    def create(self, validated_data):
+        users = [
+            User(password=make_password(data.pop("password")), **data)
+            for data in validated_data
+        ]
+        return User.objects.bulk_create(users)
+
+
 class UserSerializer(serializers.ModelSerializer):
+    """
+    Serializer for User model.
+    """
+
     class Meta:
         model = User
         fields = [
@@ -17,6 +34,7 @@ class UserSerializer(serializers.ModelSerializer):
             "user_status",
             "password",
         ]
+        list_serializer_class = UserListSerializer
 
     def create(self, validated_data):
         password = validated_data.pop("password")
@@ -34,4 +52,5 @@ class UserSerializer(serializers.ModelSerializer):
         new_password = validated_data.get("password", None)
         if new_password:
             instance.password = make_password(new_password)
+        instance.save()
         return instance
