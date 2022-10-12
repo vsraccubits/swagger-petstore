@@ -10,8 +10,10 @@ from rest_framework.response import Response
 from pets import models
 from pets.api import serializers
 from swaggerpetstore.core import constants, utils
+from swaggerpetstore.core.swagger import pets
 
 
+@pets.swagger_pet_modelviewset()
 class PetModelViewSet(viewsets.ModelViewSet):
     """
     ModelViewSet for viewing and editing pet model.
@@ -71,11 +73,13 @@ class PetModelViewSet(viewsets.ModelViewSet):
                 return Response(response, status=status.HTTP_400_BAD_REQUEST)
 
 
+@pets.swagger_pet_viewset()
 class PetViewSet(viewsets.ViewSet):
     """
     Viewset for partially update name and status of a Pet.
     """
 
+    serializer_class = serializers.PetSerializer
     parser_classes = [FormParser]
     lookup_url_kwarg = "petId"
 

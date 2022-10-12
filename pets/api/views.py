@@ -6,8 +6,10 @@ from rest_framework.views import APIView
 from pets import models
 from pets.api import serializers
 from swaggerpetstore.core import constants
+from swaggerpetstore.core.swagger import pets
 
 
+@pets.swagger_pet_by_tags()
 @api_view(["GET"])
 def pet_by_tags(request):
     """
@@ -38,6 +40,7 @@ def pet_by_tags(request):
         return Response(serializer.data, status=status.HTTP_200_OK)
 
 
+@pets.swagger_pet_by_status()
 class PetByStatusAPIView(APIView):
     """
     View return list of Pets, by filtering against a status query parameter in the URL.
