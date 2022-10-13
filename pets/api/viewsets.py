@@ -10,10 +10,10 @@ from rest_framework.response import Response
 from pets import models
 from pets.api import serializers
 from swaggerpetstore.core import constants, utils
-from swaggerpetstore.core.swagger import pets
+from swaggerpetstore.core.swagger import swagger_pets
 
 
-@pets.swagger_pet_modelviewset()
+@swagger_pets.swagger_pet_modelviewset()
 class PetModelViewSet(viewsets.ModelViewSet):
     """
     ModelViewSet for viewing and editing pet model.
@@ -73,7 +73,7 @@ class PetModelViewSet(viewsets.ModelViewSet):
                 return Response(response, status=status.HTTP_400_BAD_REQUEST)
 
 
-@pets.swagger_pet_viewset()
+@swagger_pets.swagger_pet_viewset()
 class PetViewSet(viewsets.ViewSet):
     """
     Viewset for partially update name and status of a Pet.

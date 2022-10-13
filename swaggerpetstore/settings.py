@@ -205,4 +205,5 @@ SPECTACULAR_SETTINGS = {
         "description": "Find out more about OpenAPI3",
     },
     "POSTPROCESSING_HOOKS": [],
+    "SORT_OPERATION_PARAMETERS": False,
 }
