@@ -154,7 +154,7 @@ REST_FRAMEWORK = {
 }
 
 # drf-spectacular settings
-# https://drf-spectacular.readthedocs.io/en/latest/readme.html#installation
+# https://drf-spectacular.readthedocs.io/en/latest/settings.html
 
 SPECTACULAR_SETTINGS = {
     "SERVE_INCLUDE_SCHEMA": False,
