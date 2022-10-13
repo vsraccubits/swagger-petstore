@@ -7,11 +7,13 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from swaggerpetstore.core import constants, utils
+from swaggerpetstore.core.swagger import swagger_users
 from users.api import serializers
 
 User = get_user_model()
 
 
+@swagger_users.swagger_users_create()
 class UserCreateAPIView(generics.CreateAPIView):
     """
     GenericAPIView create a user.
@@ -19,8 +21,10 @@ class UserCreateAPIView(generics.CreateAPIView):
 
     queryset = User.objects.all()
     serializer_class = serializers.UserSerializer
+    permission_classes = [IsAuthenticated]
 
 
+@swagger_users.swagger_users_retriveupdatedestroy()
 class UserRetriveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
     """
     GenericAPIView Retrive, Update, Delete user by username.
@@ -33,6 +37,7 @@ class UserRetriveUpdateDestroyAPIView(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = [IsAuthenticated]
 
 
+@swagger_users.swagger_user_login_apiview()
 class UserLoginAPIView(APIView):
     """
     View logged user into the system.
@@ -59,6 +64,7 @@ class UserLoginAPIView(APIView):
             )
 
 
+@swagger_users.swagger_user_logout_apiview()
 class UserLogoutAPIView(APIView):
     """
     View logout current loggedin user.
@@ -82,6 +88,7 @@ class UserLogoutAPIView(APIView):
             )
 
 
+@swagger_users.swagger_users_listcreate()
 class UserListCreateAPIView(APIView):
     """
     View create list of user from given input list.
