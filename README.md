@@ -44,6 +44,7 @@ The first thing to do is to clone the repository.
 
 ```shell
   $ git clone https://github.com/vsraccubits/swagger-petstore.git
+  $ git checkout feature-swagger-ui
   $ cd swagger-petstore
 ```
 
