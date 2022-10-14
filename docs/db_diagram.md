@@ -1,0 +1,1 @@
+![DBDiagram](https://github.com/vsraccubits/swagger-petstore/tree/feature-swagger-ui/docs/static/database_diagram.png)
