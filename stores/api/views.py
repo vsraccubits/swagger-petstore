@@ -4,8 +4,10 @@ from rest_framework.views import APIView
 
 from stores import models
 from stores.api import serializers
+from swaggerpetstore.core.swagger import swagger_stores
 
 
+@swagger_stores.swagger_inventory_apiview()
 class InventoryAPIView(APIView):
     """
     View return pet count by status.
@@ -19,6 +21,7 @@ class InventoryAPIView(APIView):
         return Response(response, status=status.HTTP_200_OK)
 
 
+@swagger_stores.swagger_order_createmixin()
 class OrderCreateMixin(mixins.CreateModelMixin, generics.GenericAPIView):
     """
     Mixin to create an order.
@@ -31,6 +34,7 @@ class OrderCreateMixin(mixins.CreateModelMixin, generics.GenericAPIView):
         return self.create(request, *args, **kwargs)
 
 
+@swagger_stores.swagger_order_retrivedestroy()
 class OrderRetrieveDestroyAPIView(generics.RetrieveDestroyAPIView):
     """
     GenericAPIView Retrive, Delete an order by orderId.

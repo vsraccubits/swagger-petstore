@@ -1,0 +1,1 @@
+![DBDiagram](https://github.com/vsraccubits/swagger-petstore/blob/feature-drf-spectacular/docs/static/database_diagram.png)

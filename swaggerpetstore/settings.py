@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     "users",
     "rest_framework",
     "rest_framework.authtoken",
+    "drf_spectacular",
 ]
 
 MIDDLEWARE = [
@@ -143,10 +144,66 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 # Setting authentication scheme
 # https://www.django-rest-framework.org/api-guide/authentication/#how-authentication-is-determined
+
 REST_FRAMEWORK = {
+    "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
     "DEFAULT_AUTHENTICATION_CLASSES": [
         "rest_framework.authentication.BasicAuthentication",
-        "rest_framework.authentication.SessionAuthentication",
         "rest_framework.authentication.TokenAuthentication",
-    ]
+    ],
+}
+
+# drf-spectacular settings
+# https://drf-spectacular.readthedocs.io/en/latest/settings.html
+
+SPECTACULAR_SETTINGS = {
+    "SERVE_INCLUDE_SCHEMA": False,
+    "SCHEMA_PATH_PREFIX_TRIM": True,
+    "TITLE": "Swagger Petstore - OpenAPI 3.0",
+    "DESCRIPTION": "This is a sample Pet Store Server based on the OpenAPI 3.0 specification. \
+                    You can find out more about Swagger at [https://swagger.io](https://swagger.io). \
+                    In the third iteration of the pet store, we've switched to the design first approach! \
+                    You can now help us improve the API whether it's by making changes to the definition \
+                    itself or to the code. That way, with time, we can improve the API in general, and \
+                    expose some of the new features in OAS3. \
+                    \n \
+                    \n If you're looking for the Swagger 2.0/OAS 2.0 version of Petstore, then click \
+                    [here](https://editor.swagger.io/?url=https://petstore.swagger.io/v2/swagger.yaml). \
+                    Alternatively, you can load via the `Edit > Load Petstore OAS 2.0` menu option! \
+                    \n \
+                    \n Some useful links: \
+                    \n - [The Pet Store repository](https://github.com/vsraccubits/swagger-petstore)",
+    "TOS": "http://swagger.io/terms/",
+    "CONTACT": {"email": "varun.sr@accubits.com"},
+    "LICENSE": {
+        "name": "Apache 2.0",
+        "url": "http://www.apache.org/licenses/LICENSE-2.0",
+    },
+    "VERSION": "1.0.0",
+    "SERVERS": [{"url": "http://localhost:8000/api/v1"}],
+    "TAGS": [
+        {
+            "name": "pet",
+            "description": "Everything about your Pets",
+            "externalDocs": {
+                "description": "Find out more",
+                "url": "http://swagger.io",
+            },
+        },
+        {
+            "name": "store",
+            "description": "Access to Petstore orders",
+            "externalDocs": {
+                "description": "Find out more about our store",
+                "url": "http://swagger.io",
+            },
+        },
+        {"name": "user", "description": "Operations about user"},
+    ],
+    "EXTERNAL_DOCS": {
+        "url": "https://docs.google.com/document/d/1vtj2gmCNfnIYF3SM13QGJZD2SAFzLtGVEtpD9-uKSos/edit?usp=sharing",
+        "description": "Find out more about OpenAPI3",
+    },
+    "POSTPROCESSING_HOOKS": [],
+    "SORT_OPERATION_PARAMETERS": False,
 }
