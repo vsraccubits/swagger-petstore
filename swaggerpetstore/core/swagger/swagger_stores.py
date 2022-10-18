@@ -6,6 +6,8 @@ from drf_spectacular.utils import (
     extend_schema_view,
 )
 
+from stores.api.serializers import OrderSerializer
+
 """
 API response example of InventoryAPIView.
     path: stores.api.view.InventoryAPIView
@@ -14,19 +16,6 @@ inventory_api_response = {
     "available": "string",
     "pending": "string",
     "sold": "string",
-}
-
-"""
-OrderSerializer example
-    path: stores.api.serializers.OrderSerializer
-"""
-order_serializer_response = {
-    "id": 0,
-    "quantity": 0,
-    "ship_date": "2022-10-13T15:25:32.425Z",
-    "status": "placed",
-    "complete": True,
-    "pet": 0,
 }
 
 
@@ -70,14 +59,7 @@ def swagger_order_createmixin():
             responses={
                 200: OpenApiResponse(
                     description="Successful operation",
-                    response=OpenApiTypes.OBJECT,
-                    examples=[
-                        OpenApiExample(
-                            "success",
-                            value=order_serializer_response,
-                            status_codes=["200"],
-                        )
-                    ],
+                    response=OrderSerializer,
                 ),
                 400: OpenApiResponse(description="Invalid input"),
             },
@@ -98,14 +80,7 @@ def swagger_order_retrivedestroy():
             responses={
                 200: OpenApiResponse(
                     description="Successful operation",
-                    response=OpenApiTypes.OBJECT,
-                    examples=[
-                        OpenApiExample(
-                            "success",
-                            value=order_serializer_response,
-                            status_codes=["200"],
-                        )
-                    ],
+                    response=OrderSerializer,
                 ),
                 404: OpenApiResponse(description="Order not found"),
             },
