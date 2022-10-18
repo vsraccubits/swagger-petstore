@@ -7,6 +7,7 @@ from drf_spectacular.utils import (
     extend_schema_view,
 )
 
+from pets.api.serializers import PetSerializer
 from swaggerpetstore.core import constants
 from swaggerpetstore.core.utils import api_response
 
@@ -40,14 +41,7 @@ def swagger_pet_modelviewset():
             responses={
                 200: OpenApiResponse(
                     description="Successful operation",
-                    response=OpenApiTypes.OBJECT,
-                    examples=[
-                        OpenApiExample(
-                            "success",
-                            value=pet_serializer_response,
-                            status_codes=["200"],
-                        )
-                    ],
+                    response=PetSerializer,
                 ),
                 400: OpenApiResponse(description="Invalid ID supplied"),
                 404: OpenApiResponse(description="Pet not found"),
@@ -59,14 +53,7 @@ def swagger_pet_modelviewset():
             responses={
                 201: OpenApiResponse(
                     description="Successful operation",
-                    response=OpenApiTypes.OBJECT,
-                    examples=[
-                        OpenApiExample(
-                            "success",
-                            value=pet_serializer_response,
-                            status_codes=["201"],
-                        )
-                    ],
+                    response=PetSerializer,
                 ),
                 404: OpenApiResponse(description="Bad Request"),
             },
@@ -77,14 +64,7 @@ def swagger_pet_modelviewset():
             responses={
                 200: OpenApiResponse(
                     description="Successful operation",
-                    response=OpenApiTypes.OBJECT,
-                    examples=[
-                        OpenApiExample(
-                            "success",
-                            value=pet_serializer_response,
-                            status_codes=["200"],
-                        )
-                    ],
+                    response=PetSerializer,
                 ),
                 400: OpenApiResponse(description="Invalid ID supplied"),
                 404: OpenApiResponse(description="Pet not found"),
@@ -168,14 +148,7 @@ def swagger_pet_viewset():
             responses={
                 200: OpenApiResponse(
                     description="Successful operation",
-                    response=OpenApiTypes.OBJECT,
-                    examples=[
-                        OpenApiExample(
-                            "success",
-                            value=pet_serializer_response,
-                            status_codes=["200"],
-                        )
-                    ],
+                    response=PetSerializer,
                 ),
                 400: OpenApiResponse(description="Invalid input"),
                 404: OpenApiResponse(description="Pet not found"),
@@ -206,14 +179,7 @@ def swagger_pet_by_tags():
             responses={
                 200: OpenApiResponse(
                     description="Successful operation",
-                    response=OpenApiTypes.OBJECT,
-                    examples=[
-                        OpenApiExample(
-                            "success",
-                            value=[pet_serializer_response],
-                            status_codes=["200"],
-                        )
-                    ],
+                    response=PetSerializer,
                 ),
                 400: OpenApiResponse(description="Invalid tag value"),
             },
@@ -243,14 +209,7 @@ def swagger_pet_by_status():
             responses={
                 200: OpenApiResponse(
                     description="Successful operation",
-                    response=OpenApiTypes.OBJECT,
-                    examples=[
-                        OpenApiExample(
-                            "success",
-                            value=[pet_serializer_response],
-                            status_codes=["200"],
-                        )
-                    ],
+                    response=PetSerializer,
                 ),
                 400: OpenApiResponse(description="Invalid status value"),
             },

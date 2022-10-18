@@ -40,14 +40,7 @@ def swagger_users_create():
             responses={
                 200: OpenApiResponse(
                     description="Successful operation",
-                    response=OpenApiTypes.OBJECT,
-                    examples=[
-                        OpenApiExample(
-                            "success",
-                            value=user_serializer_response,
-                            status_codes=["200"],
-                        )
-                    ],
+                    response=UserSerializer,
                 ),
                 400: OpenApiResponse(description="Invalid input"),
                 401: OpenApiResponse(description="Unauthorized"),
@@ -68,14 +61,7 @@ def swagger_users_retriveupdatedestroy():
             responses={
                 200: OpenApiResponse(
                     description="Successful operation",
-                    response=OpenApiTypes.OBJECT,
-                    examples=[
-                        OpenApiExample(
-                            "success",
-                            value=user_serializer_response,
-                            status_codes=["200"],
-                        )
-                    ],
+                    response=UserSerializer,
                 ),
                 401: OpenApiResponse(description="Unauthorized"),
                 404: OpenApiResponse(description="User not found"),
@@ -87,14 +73,7 @@ def swagger_users_retriveupdatedestroy():
             responses={
                 200: OpenApiResponse(
                     description="Successful operation",
-                    response=OpenApiTypes.OBJECT,
-                    examples=[
-                        OpenApiExample(
-                            "success",
-                            value=user_serializer_response,
-                            status_codes=["200"],
-                        )
-                    ],
+                    response=UserSerializer,
                 ),
                 401: OpenApiResponse(description="Unauthorized"),
                 404: OpenApiResponse(description="User not found"),
